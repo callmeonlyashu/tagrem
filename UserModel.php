@@ -27,9 +27,8 @@ class UserModel{
 			  echo $conn->error;
 			}
 
+
 		}
-		
-		$db->close();
 
 	}
 

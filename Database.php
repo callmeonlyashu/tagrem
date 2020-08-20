@@ -13,7 +13,8 @@ class Database {
 	public function connect() {
 
 
-		if($this->isConnected) {
+		// Return true if it is already connected.
+		if( $this->isConnected ) {
 			return true;
 		}
 		// Create connection
@@ -21,10 +22,12 @@ class Database {
 
 		// Check connection
 		if ( $this->connection->connect_error ) {  		
-		  return false;
+		  	return false;
+		} else {
+			$this->isConnected = true;
+			return true;
 		}
-		$this->isConnected = true;
-		return true;
+		
 	}
 
 	public function getConnectedDb() {
@@ -32,6 +35,9 @@ class Database {
 	}
 
 	public function close() {
+
+		// Close existing connection.
+		$this->isConnected = false;
 		$this->connection->close();
 	}
 
